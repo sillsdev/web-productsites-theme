@@ -1,0 +1,52 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	
+<section id="content_primary">
+
+  <div class="container">
+  	<div class="row">
+  	
+  		<div class="col-md-8 col-sm-8">
+    		<article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
+
+    			<section class="article-content">
+						<div class="browseNewsPosts">
+						{% if post.type == 'post'%}
+							{% if post.next %}
+							<div class="next">
+								<a href="{{post.next.link}}"><span class="browseTitle">{{post.next.title}}</span></a>
+							</div>
+							{% endif %}
+
+							{% if post.prev %}
+							<div class="prev">
+								<a href="{{post.prev.link}}"><span class="browseTitle">{{post.prev.title}}</span></a>
+							</div>
+							{% endif %}
+						{% endif %}
+						</div>
+
+    				<h1 class="article-h1">
+    				  {{post.title}}
+    				</h1>
+    				<div class="article-body">
+    					<p class="postmeta">
+					      <a href="{{post.author.path}}"> {{ post.author.name }} </a> | <strong>{{ post.post_date|date('j F Y') }}</strong>
+				      </p>
+              {{post.content}}
+    				</div>
+    			</section>
+    			
+    		</article>
+      </div>
+      
+      {% include "sidebar.twig" %}
+      
+    </div>
+  </div>
+
+</section>
+
+
+{% endblock %}

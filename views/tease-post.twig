@@ -1,0 +1,14 @@
+{% extends "tease.twig" %}
+{% block content %}
+	<h2 class="h2"><a href="{{post.link}}">{{post.title|highlight(query)}}</a></h2>
+		{% if not fn('is_search') %}
+	  <p class="postmeta"><a href="{{post.author.path}}"> {{ post.author.name }} </a> | <strong>{{ post.post_date|date('j F Y') }}</strong></p>
+	  {% endif %}
+		<p>{{post.get_preview(50)|highlight(query)}}</p>
+
+		{% if post.thumbnail.src %}
+		<a href="{{post.link}}">
+			<img src="{{post.thumbnail.src}}" title="{{post.title}} »" />
+		</a>
+		{% endif %}
+{% endblock %}
